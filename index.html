@@ -2,57 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student List - EEE-13 JKKNIU</title>
+  <title>EEE-13 JKKNIU</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
 <body>
 
-<h1 class="page-title">EEE-13 JKKNIU - Student List</h1>
+<!-- Particles background -->
+<div id="particles-js"></div>
 
-<!-- Search Bar -->
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="Search by Name or Roll...">
+<div class="welcome-container">
+
+  <!-- Logos -->
+  <div class="logos">
+    <img src="EEE/Messenger_creation_540294025599470.jpeg" alt="University Logo" class="uni-logo">
+    <img src="EEE/place_jkkniu.jpg" alt="EEE Dept Logo" class="dept-logo">
+  </div>
+
+  <!-- Welcome Text -->
+  <h1 class="welcome-text">
+    <span id="typed-text"></span>
+  </h1>
+
+  <!-- Group Photos Carousel -->
+  <div class="slider">
+    <div class="slides">
+      <img src="EEE/IMG-20240430-WA0012.jpg" alt="Group 1">
+      <img src="EEE/IMG-20241213-WA0020.jpg" alt="Group 2">
+      <img src="EEE/IMG-20250215-WA0004.jpg" alt="Group 3">
+      <img src="EEE/IMG-20250315-WA0024.jpg" alt="Group 4">
+      <img src="EEE/IMG-20250708-WA0271.jpg" alt="Group 5">
+    </div>
+  </div>
+
+  <!-- Button -->
+  <a href="students.html" class="btn">Go to Student List</a>
 </div>
 
-<ul class="student-list" id="student-list">
-  <li data-name="MD. MOSHARROF HOSEN" data-roll="23102901"><a href="student.html?id=1">MD. MOSHARROF HOSEN</a></li>
-  <li data-name="SAROWAR HOSSAIN" data-roll="23102903"><a href="student.html?id=2">SAROWAR HOSSAIN</a></li>
-  <li data-name="MST. RINI" data-roll="23102905"><a href="student.html?id=3">MST. RINI</a></li>
-  <li data-name="MD. SAHAB AL SABA" data-roll="23102907"><a href="student.html?id=4">MD. SAHAB AL SABA</a></li>
-  <li data-name="SREYA DEBNATH" data-roll="23102909"><a href="student.html?id=5">SREYA DEBNATH</a></li>
-  <li data-name="SUMON UR REZA" data-roll="23102910"><a href="student.html?id=6">SUMON UR REZA</a></li>
-  <li data-name="PRIYA RANI PAUL" data-roll="23102911"><a href="student.html?id=7">PRIYA RANI PAUL</a></li>
-  <li data-name="SIYAM SHEIKH" data-roll="23102914"><a href="student.html?id=8">SIYAM SHEIKH</a></li>
-  <li data-name="HASIBUR RAHAMAN NYEEM" data-roll="23102915"><a href="student.html?id=9">HASIBUR RAHAMAN NYEEM</a></li>
-  <li data-name="SHOUKOT ISLAM" data-roll="23102916"><a href="student.html?id=10">SHOUKOT ISLAM</a></li>
-  <!-- Add remaining students similarly -->
-</ul>
-
-<p><a href="index.html" class="btn">Back to Home</a></p>
-
-<!-- JS for Search & Animation -->
+<!-- Typing Animation Script -->
 <script>
-const list = document.getElementById('student-list');
-const items = list.querySelectorAll('li');
+const text = "Welcome to EEE-13 JKKNIU";
+let i = 0;
+const speed = 100;
+function typeWriter() {
+  if(i < text.length){
+    document.getElementById("typed-text").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+window.onload = typeWriter;
+</script>
 
-// Fade-in animation
-items.forEach((item, index) => {
-  item.style.animationDelay = `${index * 0.05}s`;
-  item.classList.add('fade-slide-in');
-});
-
-// Search filter
-document.getElementById('search-input').addEventListener('keyup', function() {
-  const filter = this.value.toLowerCase();
-  items.forEach(item => {
-    const name = item.dataset.name.toLowerCase();
-    const roll = item.dataset.roll.toLowerCase();
-    if(name.includes(filter) || roll.includes(filter)){
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
-  });
+<!-- Particles.js init -->
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 60 },
+    "color": { "value": "#004aad" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5 },
+    "size": { "value": 3 },
+    "move": { "enable": true, "speed": 2 }
+  }
 });
 </script>
 
