@@ -14,12 +14,19 @@
 <p style="text-align:center;"><a href="students.html" class="btn">Back to Student List</a></p>
 
 <script>
-// Example student data
+// Full student data
 const students = [
   {id:1, roll:"23102901", name:"MD. MOSHARROF HOSEN", dept:"EEE", email:"mosharrof@example.com"},
   {id:2, roll:"23102903", name:"SAROWAR HOSSAIN", dept:"EEE", email:"sarowar@example.com"},
   {id:3, roll:"23102905", name:"MST. RINI", dept:"EEE", email:"rini@example.com"},
-  // add all remaining students
+  {id:4, roll:"23102907", name:"MD. SAHAB AL SABA", dept:"EEE", email:"sahab@example.com"},
+  {id:5, roll:"23102909", name:"SREYA DEBNATH", dept:"EEE", email:"sreya@example.com"},
+  {id:6, roll:"23102910", name:"SUMON UR REZA", dept:"EEE", email:"sumon@example.com"},
+  {id:7, roll:"23102911", name:"PRIYA RANI PAUL", dept:"EEE", email:"priya@example.com"},
+  {id:8, roll:"23102914", name:"SIYAM SHEIKH", dept:"EEE", email:"siyam@example.com"},
+  {id:9, roll:"23102915", name:"HASIBUR RAHAMAN NYEEM", dept:"EEE", email:"hasibur@example.com"},
+  {id:10, roll:"23102916", name:"SHOUKOT ISLAM", dept:"EEE", email:"shoukot@example.com"},
+  // Add all remaining students
 ];
 
 // Get id from URL
@@ -35,6 +42,8 @@ if(student){
     <p><strong>Department:</strong> ${student.dept}</p>
     <p><strong>Email:</strong> ${student.email}</p>
   `;
+} else {
+  card.innerHTML = "<p>Student not found.</p>";
 }
 </script>
 
