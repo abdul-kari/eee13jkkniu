@@ -25,17 +25,15 @@
   <li data-name="SIYAM SHEIKH" data-roll="23102914"><a href="student.html?id=8">SIYAM SHEIKH</a></li>
   <li data-name="HASIBUR RAHAMAN NYEEM" data-roll="23102915"><a href="student.html?id=9">HASIBUR RAHAMAN NYEEM</a></li>
   <li data-name="SHOUKOT ISLAM" data-roll="23102916"><a href="student.html?id=10">SHOUKOT ISLAM</a></li>
-  <!-- Add remaining students similarly -->
+  <!-- Add remaining students in the same format -->
 </ul>
 
-<p><a href="index.html" class="btn">Back to Home</a></p>
+<p style="text-align:center;"><a href="index.html" class="btn">Back to Home</a></p>
 
-<!-- JS for Search & Animation -->
 <script>
+// Fade-in animation for list items
 const list = document.getElementById('student-list');
 const items = list.querySelectorAll('li');
-
-// Fade-in animation
 items.forEach((item, index) => {
   item.style.animationDelay = `${index * 0.05}s`;
   item.classList.add('fade-slide-in');
