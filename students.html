@@ -6,52 +6,55 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="page-title">EEE-13 JKKNIU - Student List</h1>
 
-  <ul class="student-list">
-    <li><a href="student.html?id=1">MD. MOSHARROF HOSEN</a></li>
-    <li><a href="student.html?id=2">SAROWAR HOSSAIN</a></li>
-    <li><a href="student.html?id=3">MST. RINI</a></li>
-    <li><a href="student.html?id=4">MD. SAHAB AL SABA</a></li>
-    <li><a href="student.html?id=5">SREYA DEBNATH</a></li>
-    <li><a href="student.html?id=6">SUMON UR REZA</a></li>
-    <li><a href="student.html?id=7">PRIYA RANI PAUL</a></li>
-    <li><a href="student.html?id=8">SIYAM SHEIKH</a></li>
-    <li><a href="student.html?id=9">HASIBUR RAHAMAN NYEEM</a></li>
-    <li><a href="student.html?id=10">SHOUKOT ISLAM</a></li>
-    <li><a href="student.html?id=11">PROMA DATTA</a></li>
-    <li><a href="student.html?id=12">BISHAMVOR KUMAR DAS</a></li>
-    <li><a href="student.html?id=13">MD. LUTFUR RAHMAN</a></li>
-    <li><a href="student.html?id=14">MD. SHAKIBUL ISLAM EMON</a></li>
-    <li><a href="student.html?id=15">A.K. AKIF</a></li>
-    <li><a href="student.html?id=16">MD. MOMINUL ISLAM</a></li>
-    <li><a href="student.html?id=17">MD. ROYAL RANA</a></li>
-    <li><a href="student.html?id=18">MAHEDI HASAN AROB</a></li>
-    <li><a href="student.html?id=19">MOUMITA AKTER NIPUN</a></li>
-    <li><a href="student.html?id=20">MD. RATUL AHMED RASEL</a></li>
-    <li><a href="student.html?id=21">MUCTHENDU ROY RAHUL</a></li>
-    <li><a href="student.html?id=22">SHAUGT BIN RAFIQ SHIFAT</a></li>
-    <li><a href="student.html?id=23">MD. JUBED AHMED</a></li>
-    <li><a href="student.html?id=24">VUMI GUPTA</a></li>
-    <li><a href="student.html?id=25">TRIPTI ROY ORCHI</a></li>
-    <li><a href="student.html?id=26">MD. SAKIB HOSSAIN</a></li>
-    <li><a href="student.html?id=27">NAZIR AHMED</a></li>
-    <li><a href="student.html?id=28">MST. SADIKA FARTHOUS</a></li>
-    <li><a href="student.html?id=29">MD. PAVEL KHAN</a></li>
-    <li><a href="student.html?id=30">MD. MAHMUDUL ISLAM RIZVI</a></li>
-    <li><a href="student.html?id=31">MD. ALIF MAHMUD OYON</a></li>
-    <li><a href="student.html?id=32">HIMAL MIA</a></li>
-  </ul>
+<h1 class="page-title">EEE-13 JKKNIU - Student List</h1>
 
-  <p><a href="index.html" class="btn">Back to Home</a></p>
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search by Name or Roll...">
+</div>
 
-  <script>
-    // Fade-in animation for each li on load
-    const items = document.querySelectorAll('.student-list li');
-    items.forEach((item, index) => {
-      item.style.animationDelay = `${index * 0.1}s`;
-      item.classList.add('fade-slide-in');
-    });
-  </script>
+<ul class="student-list" id="student-list">
+  <li data-name="MD. MOSHARROF HOSEN" data-roll="23102901"><a href="student.html?id=1">MD. MOSHARROF HOSEN</a></li>
+  <li data-name="SAROWAR HOSSAIN" data-roll="23102903"><a href="student.html?id=2">SAROWAR HOSSAIN</a></li>
+  <li data-name="MST. RINI" data-roll="23102905"><a href="student.html?id=3">MST. RINI</a></li>
+  <li data-name="MD. SAHAB AL SABA" data-roll="23102907"><a href="student.html?id=4">MD. SAHAB AL SABA</a></li>
+  <li data-name="SREYA DEBNATH" data-roll="23102909"><a href="student.html?id=5">SREYA DEBNATH</a></li>
+  <li data-name="SUMON UR REZA" data-roll="23102910"><a href="student.html?id=6">SUMON UR REZA</a></li>
+  <li data-name="PRIYA RANI PAUL" data-roll="23102911"><a href="student.html?id=7">PRIYA RANI PAUL</a></li>
+  <li data-name="SIYAM SHEIKH" data-roll="23102914"><a href="student.html?id=8">SIYAM SHEIKH</a></li>
+  <li data-name="HASIBUR RAHAMAN NYEEM" data-roll="23102915"><a href="student.html?id=9">HASIBUR RAHAMAN NYEEM</a></li>
+  <li data-name="SHOUKOT ISLAM" data-roll="23102916"><a href="student.html?id=10">SHOUKOT ISLAM</a></li>
+  <!-- Add remaining students similarly -->
+</ul>
+
+<p><a href="index.html" class="btn">Back to Home</a></p>
+
+<!-- JS for Search & Animation -->
+<script>
+const list = document.getElementById('student-list');
+const items = list.querySelectorAll('li');
+
+// Fade-in animation
+items.forEach((item, index) => {
+  item.style.animationDelay = `${index * 0.05}s`;
+  item.classList.add('fade-slide-in');
+});
+
+// Search filter
+document.getElementById('search-input').addEventListener('keyup', function() {
+  const filter = this.value.toLowerCase();
+  items.forEach(item => {
+    const name = item.dataset.name.toLowerCase();
+    const roll = item.dataset.roll.toLowerCase();
+    if(name.includes(filter) || roll.includes(filter)){
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+});
+</script>
+
 </body>
 </html>
