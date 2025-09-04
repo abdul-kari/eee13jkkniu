@@ -4,31 +4,69 @@
   <meta charset="UTF-8">
   <title>EEE-13 JKKNIU</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 </head>
 <body>
-  <div class="welcome-container">
-    <!-- Logos -->
-    <div class="logos">
-      <img src="EEE/Messenger_creation_540294025599470.jpeg" alt="University Logo" class="uni-logo">
-      <img src="EEE/place_jkkniu.jpg" alt="EEE Dept Logo" class="dept-logo">
-    </div>
 
-    <!-- Welcome Text -->
-    <h1 class="welcome-text">Welcome to EEE-13 JKKNIU</h1>
-    
-    <!-- Group Images Slider -->
-    <div class="slider">
-      <div class="slides">
-        <img src="EEE/IMG-20240430-WA0012.jpg" alt="Group 1">
-        <img src="EEE/IMG-20241213-WA0020.jpg" alt="Group 2">
-        <img src="EEE/IMG-20250215-WA0004.jpg" alt="Group 3">
-        <img src="EEE/IMG-20250315-WA0024.jpg" alt="Group 4">
-        <img src="EEE/IMG-20250708-WA0271.jpg" alt="Group 5">
-      </div>
-    </div>
+<!-- Particles background -->
+<div id="particles-js"></div>
 
-    <!-- Button to Student List -->
-    <a href="students.html" class="btn">Go to Student List</a>
+<div class="welcome-container">
+
+  <!-- Logos -->
+  <div class="logos">
+    <img src="EEE/Messenger_creation_540294025599470.jpeg" alt="University Logo" class="uni-logo">
+    <img src="EEE/place_jkkniu.jpg" alt="EEE Dept Logo" class="dept-logo">
   </div>
+
+  <!-- Welcome Text -->
+  <h1 class="welcome-text">
+    <span id="typed-text"></span>
+  </h1>
+
+  <!-- Group Photos Carousel -->
+  <div class="slider">
+    <div class="slides">
+      <img src="EEE/IMG-20240430-WA0012.jpg" alt="Group 1">
+      <img src="EEE/IMG-20241213-WA0020.jpg" alt="Group 2">
+      <img src="EEE/IMG-20250215-WA0004.jpg" alt="Group 3">
+      <img src="EEE/IMG-20250315-WA0024.jpg" alt="Group 4">
+      <img src="EEE/IMG-20250708-WA0271.jpg" alt="Group 5">
+    </div>
+  </div>
+
+  <!-- Button -->
+  <a href="students.html" class="btn">Go to Student List</a>
+</div>
+
+<!-- Typing Animation Script -->
+<script>
+const text = "Welcome to EEE-13 JKKNIU";
+let i = 0;
+const speed = 100;
+function typeWriter() {
+  if(i < text.length){
+    document.getElementById("typed-text").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+window.onload = typeWriter;
+</script>
+
+<!-- Particles.js init -->
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 60 },
+    "color": { "value": "#004aad" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5 },
+    "size": { "value": 3 },
+    "move": { "enable": true, "speed": 2 }
+  }
+});
+</script>
+
 </body>
 </html>
