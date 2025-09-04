@@ -72,3 +72,24 @@
   from {transform: translateY(-50px); opacity:0;}
   to {transform: translateY(0); opacity:1;}
 }
+.student-card {
+  width: 400px;
+  margin: 50px auto;
+  background-color: #004aad;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+  animation: fadeSlideIn 1s ease forwards;
+}
+
+.student-card h2 {
+  margin-bottom: 20px;
+  color: #00c6ff;
+}
+
+.student-card p {
+  font-size: 1.1em;
+  margin: 10px 0;
+}
