@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Student Details - EEE-13 JKKNIU</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
   <h1>Student Details</h1>
@@ -44,26 +43,4 @@
       {id:29, roll:"22102922", name:"MD. PAVEL KHAN", dept:"EEE", email:"pavel@example.com"},
       {id:30, roll:"22102925", name:"MD. MAHMUDUL ISLAM RIZVI", dept:"EEE", email:"rizvi@example.com"},
       {id:31, roll:"22102929", name:"MD. ALIF MAHMUD OYON", dept:"EEE", email:"alif@example.com"},
-      {id:32, roll:"22102934", name:"HIMAL MIA", dept:"EEE", email:"himal@example.com"}
-    ];
-
-    // URL থেকে id নাও
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
-
-    const student = students.find(s => s.id === id);
-
-    const detailsDiv = document.getElementById('student-details');
-    if(student){
-      detailsDiv.innerHTML = `
-        <p><strong>Roll No:</strong> ${student.roll}</p>
-        <p><strong>Name:</strong> ${student.name}</p>
-        <p><strong>Department:</strong> ${student.dept}</p>
-        <p><strong>Email:</strong> ${student.email}</p>
-      `;
-    } else {
-      detailsDiv.innerHTML = "<p>Student not found.</p>";
-    }
-  </script>
-</body>
-</html>
+      {id:32, roll:"22102934",
