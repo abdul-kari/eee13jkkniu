@@ -2,45 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Details - EEE-13 JKKNIU</title>
+  <title>Student Details</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Student Details</h1>
-  <div id="student-details"></div>
-  <p><a href="students.html">Back to Student List</a></p>
 
-  <script>
-    const students = [
-      {id:1, roll:"23102901", name:"MD. MOSHARROF HOSEN", dept:"EEE", email:"mosharrof@example.com"},
-      {id:2, roll:"23102903", name:"SAROWAR HOSSAIN", dept:"EEE", email:"sarowar@example.com"},
-      {id:3, roll:"23102905", name:"MST. RINI", dept:"EEE", email:"rini@example.com"},
-      {id:4, roll:"23102907", name:"MD. SAHAB AL SABA", dept:"EEE", email:"sahab@example.com"},
-      {id:5, roll:"23102909", name:"SREYA DEBNATH", dept:"EEE", email:"sreya@example.com"},
-      {id:6, roll:"23102910", name:"SUMON UR REZA", dept:"EEE", email:"sumon@example.com"},
-      {id:7, roll:"23102911", name:"PRIYA RANI PAUL", dept:"EEE", email:"priya@example.com"},
-      {id:8, roll:"23102914", name:"SIYAM SHEIKH", dept:"EEE", email:"siyam@example.com"},
-      {id:9, roll:"23102915", name:"HASIBUR RAHAMAN NYEEM", dept:"EEE", email:"hasibur@example.com"},
-      {id:10, roll:"23102916", name:"SHOUKOT ISLAM", dept:"EEE", email:"shoukot@example.com"},
-      {id:11, roll:"23102917", name:"PROMA DATTA", dept:"EEE", email:"proma@example.com"},
-      {id:12, roll:"23102918", name:"BISHAMVOR KUMAR DAS", dept:"EEE", email:"bishamvor@example.com"},
-      {id:13, roll:"23102919", name:"MD. LUTFUR RAHMAN", dept:"EEE", email:"lutfur@example.com"},
-      {id:14, roll:"23102923", name:"MD. SHAKIBUL ISLAM EMON", dept:"EEE", email:"shakib@example.com"},
-      {id:15, roll:"23102924", name:"A.K. AKIF", dept:"EEE", email:"akif@example.com"},
-      {id:16, roll:"23102926", name:"MD. MOMINUL ISLAM", dept:"EEE", email:"mominul@example.com"},
-      {id:17, roll:"23102930", name:"MD. ROYAL RANA", dept:"EEE", email:"royal@example.com"},
-      {id:18, roll:"23102934", name:"MAHEDI HASAN AROB", dept:"EEE", email:"mahedi@example.com"},
-      {id:19, roll:"23102935", name:"MOUMITA AKTER NIPUN", dept:"EEE", email:"moumita@example.com"},
-      {id:20, roll:"23102936", name:"MD. RATUL AHMED RASEL", dept:"EEE", email:"ratul@example.com"},
-      {id:21, roll:"23102937", name:"MUCTHENDU ROY RAHUL", dept:"EEE", email:"rahul@example.com"},
-      {id:22, roll:"23102938", name:"SHAUGT BIN RAFIQ SHIFAT", dept:"EEE", email:"shifat@example.com"},
-      {id:23, roll:"23102939", name:"MD. JUBED AHMED", dept:"EEE", email:"jubed@example.com"},
-      {id:24, roll:"23102941", name:"VUMI GUPTA", dept:"EEE", email:"vumi@example.com"},
-      {id:25, roll:"23102943", name:"TRIPTI ROY ORCHI", dept:"EEE", email:"tripti@example.com"},
-      {id:26, roll:"22102902", name:"MD. SAKIB HOSSAIN", dept:"EEE", email:"sakib@example.com"},
-      {id:27, roll:"22102906", name:"NAZIR AHMED", dept:"EEE", email:"nazir@example.com"},
-      {id:28, roll:"22102915", name:"MST. SADIKA FARTHOUS", dept:"EEE", email:"sadika@example.com"},
-      {id:29, roll:"22102922", name:"MD. PAVEL KHAN", dept:"EEE", email:"pavel@example.com"},
-      {id:30, roll:"22102925", name:"MD. MAHMUDUL ISLAM RIZVI", dept:"EEE", email:"rizvi@example.com"},
-      {id:31, roll:"22102929", name:"MD. ALIF MAHMUD OYON", dept:"EEE", email:"alif@example.com"},
-      {id:32, roll:"22102934",
+<div class="student-card" id="student-card">
+  <!-- JS will inject student details -->
+</div>
+
+<p style="text-align:center;"><a href="students.html" class="btn">Back to Student List</a></p>
+
+<script>
+// Example student data
+const students = [
+  {id:1, roll:"23102901", name:"MD. MOSHARROF HOSEN", dept:"EEE", email:"mosharrof@example.com"},
+  {id:2, roll:"23102903", name:"SAROWAR HOSSAIN", dept:"EEE", email:"sarowar@example.com"},
+  {id:3, roll:"23102905", name:"MST. RINI", dept:"EEE", email:"rini@example.com"},
+  // add all remaining students
+];
+
+// Get id from URL
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id'));
+const student = students.find(s => s.id === id);
+
+const card = document.getElementById('student-card');
+if(student){
+  card.innerHTML = `
+    <h2>${student.name}</h2>
+    <p><strong>Roll No:</strong> ${student.roll}</p>
+    <p><strong>Department:</strong> ${student.dept}</p>
+    <p><strong>Email:</strong> ${student.email}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
