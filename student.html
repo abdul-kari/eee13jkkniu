@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+</head>
+<body>
+  <h1>Student Details</h1>
+  <div id="student-details"></div>
+  <p><a href="students.html">Back to Student List</a></p>
+
+  <script>
+    // ডামি ডাটা (পরবর্তীতে ৪০ জনের তথ্য বসানো যাবে)
+    const students = [
+      {id:1, name:"MD. MOSHARROF HOSEN.", dept:"EEE", email:"mosharrof@example.com"},
+      {id:2, name:"SAROWAR HOSSAIN.", dept:"EEE", email:"sarowar@example.com"},
+      {id:3, name:"MST. RINI.", dept:"EEE", email:"rini@example.com"}
+      // এখানে পরে বাকি সবাই যোগ করা যাবে
+    ];
+
+    // URL থেকে id নাও
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+
+    const student = students.find(s => s.id === id);
+
+    const detailsDiv = document.getElementById('student-details');
+    if(student){
+      detailsDiv.innerHTML = `<p><strong>Name:</strong> ${student.name}</p>
+                              <p><strong>Department:</strong> ${student.dept}</p>
+                              <p><strong>Email:</strong> ${student.email}</p>`;
+    } else {
+      detailsDiv.innerHTML = "<p>Student not found.</p>";
+    }
+  </script>
+</body>
+</html>
