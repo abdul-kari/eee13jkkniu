@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>EEE-13 JKKNIU - Student List</h1>
-  <ul>
+  <h1 class="page-title">EEE-13 JKKNIU - Student List</h1>
+
+  <ul class="student-list">
     <li><a href="student.html?id=1">MD. MOSHARROF HOSEN</a></li>
     <li><a href="student.html?id=2">SAROWAR HOSSAIN</a></li>
     <li><a href="student.html?id=3">MST. RINI</a></li>
@@ -41,6 +42,16 @@
     <li><a href="student.html?id=31">MD. ALIF MAHMUD OYON</a></li>
     <li><a href="student.html?id=32">HIMAL MIA</a></li>
   </ul>
-  <p><a href="index.html">Back to Home</a></p>
+
+  <p><a href="index.html" class="btn">Back to Home</a></p>
+
+  <script>
+    // Fade-in animation for each li on load
+    const items = document.querySelectorAll('.student-list li');
+    items.forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
+      item.classList.add('fade-slide-in');
+    });
+  </script>
 </body>
 </html>
