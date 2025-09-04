@@ -1,0 +1,63 @@
+/* Basic reset */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  background-color: #004aad;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+li {
+  background-color: #ffffff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+li a {
+  text-decoration: none;
+  color: #004aad;
+  font-weight: bold;
+}
+
+li:hover {
+  background-color: #e0e7ff;
+}
+
+p a {
+  display: inline-block;
+  margin: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #004aad;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+p a:hover {
+  background-color: #002f6c;
+}
+
+#student-details {
+  width: 60%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
