@@ -2,50 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Details</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      max-width: 420px;
+      width: 90%;
+      animation: fadeIn 1.2s ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #fff;
+      margin-bottom: 20px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .info {
+      text-align: center;
+    }
+
+    .info h2 {
+      margin: 10px 0;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .info p {
+      margin: 6px 0;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    a.back-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: #ff9800;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    a.back-btn:hover {
+      background: #e65100;
+      transform: scale(1.07);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
 </head>
 <body>
 
-<div class="student-card" id="student-card">
-  <!-- JS will inject student details -->
+<div class="card" id="studentCard">
+  <!-- Student details will load here -->
 </div>
 
-<p style="text-align:center;"><a href="students.html" class="btn">Back to Student List</a></p>
-
 <script>
-// Full student data
-const students = [
-  {id:1, roll:"23102901", name:"MD. MOSHARROF HOSEN", dept:"EEE", email:"mosharrof@example.com"},
-  {id:2, roll:"23102903", name:"SAROWAR HOSSAIN", dept:"EEE", email:"sarowar@example.com"},
-  {id:3, roll:"23102905", name:"MST. RINI", dept:"EEE", email:"rini@example.com"},
-  {id:4, roll:"23102907", name:"MD. SAHAB AL SABA", dept:"EEE", email:"sahab@example.com"},
-  {id:5, roll:"23102909", name:"SREYA DEBNATH", dept:"EEE", email:"sreya@example.com"},
-  {id:6, roll:"23102910", name:"SUMON UR REZA", dept:"EEE", email:"sumon@example.com"},
-  {id:7, roll:"23102911", name:"PRIYA RANI PAUL", dept:"EEE", email:"priya@example.com"},
-  {id:8, roll:"23102914", name:"SIYAM SHEIKH", dept:"EEE", email:"siyam@example.com"},
-  {id:9, roll:"23102915", name:"HASIBUR RAHAMAN NYEEM", dept:"EEE", email:"hasibur@example.com"},
-  {id:10, roll:"23102916", name:"SHOUKOT ISLAM", dept:"EEE", email:"shoukot@example.com"},
-  // Add all remaining students
-];
+  const students = [
+    { id: 1,  name: "MD. MOSHARROF HOSEN",      roll: "23102901", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "mosharrof@example.com", photo: "EEE/students/mosharrof.jpg" },
+    { id: 2,  name: "SAROWAR HOSSAIN",          roll: "23102903", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sarowar@example.com", photo: "EEE/students/sarowar.jpg" },
+    { id: 3,  name: "MST. RINI",                roll: "23102905", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rini@example.com", photo: "EEE/students/rini.jpg" },
+    { id: 4,  name: "MD. SAHAB AL SABA",        roll: "23102907", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "saba@example.com", photo: "EEE/students/saba.jpg" },
+    { id: 5,  name: "SREYA DEBNATH",            roll: "23102909", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sreya@example.com", photo: "EEE/students/sreya.jpg" },
+    { id: 6,  name: "SUMON UR REZA",            roll: "23102910", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sumon@example.com", photo: "EEE/students/sumon.jpg" },
+    { id: 7,  name: "PRIYA RANI PAUL",          roll: "23102911", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "priya@example.com", photo: "EEE/students/priya.jpg" },
+    { id: 8,  name: "SIYAM SHEIKH",             roll: "23102914", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "siyam@example.com", photo: "EEE/students/siyam.jpg" },
+    { id: 9,  name: "HASIBUR RAHAMAN NYEEM",    roll: "23102915", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "nyeem@example.com", photo: "EEE/students/nyeem.jpg" },
+    { id: 10, name: "SHOUKOT ISLAM",            roll: "23102916", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "shoukot@example.com", photo: "EEE/students/shoukot.jpg" },
+    { id: 11, name: "PROMA DATTA",              roll: "23102917", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "proma@example.com", photo: "EEE/students/proma.jpg" },
+    { id: 12, name: "BISHAMVOR KUMAR DAS",      roll: "23102918", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "bishamvor@example.com", photo: "EEE/students/bishamvor.jpg" },
+    { id: 13, name: "MD. LUTFUR RAHMAN",        roll: "23102919", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "lutfur@example.com", photo: "EEE/students/lutfur.jpg" },
+    { id: 14, name: "MD. SHAKIBUL ISLAM EMON",  roll: "23102923", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "emon@example.com", photo: "EEE/students/emon.jpg" },
+    { id: 15, name: "A.K. AKIF",                roll: "23102924", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "akif@example.com", photo: "EEE/students/akif.jpg" },
+    { id: 16, name: "MD. MOMINUL ISLAM",        roll: "23102926", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "mominul@example.com", photo: "EEE/students/mominul.jpg" },
+    { id: 17, name: "MD. ROYAL RANA",           roll: "23102930", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "royal@example.com", photo: "EEE/students/royal.jpg" },
+    { id: 18, name: "MAHEDI HASAN AROB",        roll: "23102934", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "arob@example.com", photo: "EEE/students/arob.jpg" },
+    { id: 19, name: "MOUMITA AKTER NIPUN",      roll: "23102935", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "moumita@example.com", photo: "EEE/students/moumita.jpg" },
+    { id: 20, name: "MD. RATUL AHMED RASEL",    roll: "23102936", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "ratul@example.com", photo: "EEE/students/ratul.jpg" },
+    { id: 21, name: "MUCTHENDU ROY RAHUL",      roll: "23102937", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rahul@example.com", photo: "EEE/students/rahul.jpg" },
+    { id: 22, name: "SHAUGT BIN RAFIQ SHIFAT",  roll: "23102938", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "shifat@example.com", photo: "EEE/students/shifat.jpg" },
+    { id: 23, name: "MD. JUBED AHMED",          roll: "23102939", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "jubed@example.com", photo: "EEE/students/jubed.jpg" },
+    { id: 24, name: "VUMI GUPTA",               roll: "23102941", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "vumi@example.com", photo: "EEE/students/vumi.jpg" },
+    { id: 25, name: "TRIPTI ROY ORCHI",         roll: "23102943", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "tripti@example.com", photo: "EEE/students/tripti.jpg" },
+    { id: 26, name: "MD. SAKIB HOSSAIN",        roll: "22102902", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sakib@example.com", photo: "EEE/students/sakib.jpg" },
+    { id: 27, name: "NAZIR AHMED",              roll: "22102906", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "nazir@example.com", photo: "EEE/students/nazir.jpg" },
+    { id: 28, name: "MST. SADIKA FARTHOUS",     roll: "22102915", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sadika@example.com", photo: "EEE/students/sadika.jpg" },
+    { id: 29, name: "MD. PAVEL KHAN",           roll: "22102922", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "pavel@example.com", photo: "EEE/students/pavel.jpg" },
+    { id: 30, name: "MD. MAHMUDUL ISLAM RIZVI", roll: "22102925", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rizvi@example.com", photo: "EEE/students/rizvi.jpg" },
+    { id: 31, name: "MD. ALIF MAHMUD OYON",     roll: "22102929", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "oyon@example.com", photo: "EEE/students/oyon.jpg" },
+    { id: 32, name: "HIMAL MIA",                roll: "22102934", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "himal@example.com", photo: "EEE/students/himal.jpg" }
+  ];
 
-// Get id from URL
-const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get('id'));
-const student = students.find(s => s.id === id);
+  // Get ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = parseInt(urlParams.get("id"));
 
-const card = document.getElementById('student-card');
-if(student){
-  card.innerHTML = `
-    <h2>${student.name}</h2>
-    <p><strong>Roll No:</strong> ${student.roll}</p>
-    <p><strong>Department:</strong> ${student.dept}</p>
-    <p><strong>Email:</strong> ${student.email}</p>
-  `;
-} else {
-  card.innerHTML = "<p>Student not found.</p>";
-}
+  // Find student
+  const student = students.find(s => s.id === id);
+
+  if (student) {
+    document.getElementById("studentCard").innerHTML = `
+      <img src="${student.photo}" alt="${student.name}">
+      <div class="info">
+        <h2>${student.name}</h2>
+        <p><strong>Roll:</strong> ${student.roll}</p>
+        <p><strong>Department:</strong> ${student.dept}</p>
+        <p><strong>Mobile:</strong> ${student.phone}</p>
+        <p><strong>Email:</strong> ${student.email}</p>
+      </div>
+      <a href="students.html" class="back-btn">⬅ Back to List</a>
+    `;
+  } else {
+    document.getElementById("studentCard").innerHTML = `
+      <h2>Student Not Found</h2>
+      <a href="students.html" class="back-btn">⬅ Back to List</a>
+    `;
+  }
 </script>
-
 </body>
 </html>
