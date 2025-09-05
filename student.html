@@ -3,154 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Details</title>
+  <title>Student Profile – EEE 13th Batch</title>
+  <link rel="stylesheet" href="style.css">
   <style>
+    /* RESET */
+    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
       color: #fff;
-      text-align: center;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header .logo img {
+      height: 40px;
+      border-radius: 6px;
+    }
+    nav ul { display: flex; gap: 20px; list-style: none; }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {
+      color: #00f2fe;
+    }
+
+    /* PROFILE CARD */
+    .profile-container {
+      max-width: 900px;
+      margin: 120px auto 60px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      animation: fadeIn 1.5s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(30px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+    .profile-photo {
       display: flex;
       justify-content: center;
-      align-items: center;
+      margin-bottom: 25px;
     }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.5);
-      max-width: 420px;
-      width: 90%;
-      animation: fadeIn 1.2s ease;
-      backdrop-filter: blur(14px);
-    }
-
-    .card img {
+    .profile-photo img {
       width: 180px;
       height: 180px;
-      border-radius: 50%;
       object-fit: cover;
-      border: 5px solid #fff;
-      margin-bottom: 20px;
-      animation: float 5s ease-in-out infinite;
+      border-radius: 50%;
+      border: 5px solid #00f2fe;
+      box-shadow: 0 0 20px rgba(0,242,254,0.6);
+      transition: 0.4s;
+    }
+    .profile-photo img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(79,172,254,0.9);
+    }
+    .profile-info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .profile-info h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px #00f2fe;
+    }
+    .profile-info p {
+      font-size: 1.1rem;
+      margin: 4px 0;
+      color: #ddd;
     }
 
-    .info {
+    /* CONTACT INFO */
+    .contact-info {
+      margin: 30px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: #00f2fe;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    .contact-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: #00f2fe;
+    }
+    .contact-card p {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    /* SOCIAL LINKS */
+    .social-links {
+      margin-top: 40px;
       text-align: center;
     }
-
-    .info h2 {
-      margin: 10px 0;
-      font-size: 26px;
-      font-weight: 600;
-    }
-
-    .info p {
-      margin: 6px 0;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    a.back-btn {
+    .social-links a {
       display: inline-block;
-      margin-top: 25px;
-      padding: 12px 25px;
-      background: #ff9800;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 10px;
+      margin: 0 10px;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 18px;
+      border-radius: 50px;
       transition: 0.3s;
-      font-weight: 500;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .social-links a:hover {
+      background: linear-gradient(90deg,#4facfe,#00f2fe);
+      color: #000;
+      transform: scale(1.1);
     }
 
-    a.back-btn:hover {
-      background: #e65100;
-      transform: scale(1.07);
+    /* FOOTER */
+    footer {
+      background: rgba(0,0,0,0.7);
+      padding: 30px;
+      text-align: center;
+      margin-top: 60px;
+      color: #aaa;
+      font-size: 0.9rem;
     }
+    footer a { color: #00f2fe; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0px); }
+    /* PARTICLES */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top:0; left:0;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
 
-<div class="card" id="studentCard">
-  <!-- Student details will load here -->
-</div>
+  <!-- PARTICLES -->
+  <div id="particles-js"></div>
 
-<script>
-  const students = [
-    { id: 1,  name: "MD. MOSHARROF HOSEN",      roll: "23102901", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "mosharrof@example.com", photo: "EEE/students/mosharrof.jpg" },
-    { id: 2,  name: "SAROWAR HOSSAIN",          roll: "23102903", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sarowar@example.com", photo: "EEE/students/sarowar.jpg" },
-    { id: 3,  name: "MST. RINI",                roll: "23102905", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rini@example.com", photo: "EEE/students/rini.jpg" },
-    { id: 4,  name: "MD. SAHAB AL SABA",        roll: "23102907", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "saba@example.com", photo: "EEE/students/saba.jpg" },
-    { id: 5,  name: "SREYA DEBNATH",            roll: "23102909", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sreya@example.com", photo: "EEE/students/sreya.jpg" },
-    { id: 6,  name: "SUMON UR REZA",            roll: "23102910", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sumon@example.com", photo: "EEE/students/sumon.jpg" },
-    { id: 7,  name: "PRIYA RANI PAUL",          roll: "23102911", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "priya@example.com", photo: "EEE/students/priya.jpg" },
-    { id: 8,  name: "SIYAM SHEIKH",             roll: "23102914", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "siyam@example.com", photo: "EEE/students/siyam.jpg" },
-    { id: 9,  name: "HASIBUR RAHAMAN NYEEM",    roll: "23102915", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "nyeem@example.com", photo: "EEE/students/nyeem.jpg" },
-    { id: 10, name: "SHOUKOT ISLAM",            roll: "23102916", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "shoukot@example.com", photo: "EEE/students/shoukot.jpg" },
-    { id: 11, name: "PROMA DATTA",              roll: "23102917", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "proma@example.com", photo: "EEE/students/proma.jpg" },
-    { id: 12, name: "BISHAMVOR KUMAR DAS",      roll: "23102918", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "bishamvor@example.com", photo: "EEE/students/bishamvor.jpg" },
-    { id: 13, name: "MD. LUTFUR RAHMAN",        roll: "23102919", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "lutfur@example.com", photo: "EEE/students/lutfur.jpg" },
-    { id: 14, name: "MD. SHAKIBUL ISLAM EMON",  roll: "23102923", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "emon@example.com", photo: "EEE/students/emon.jpg" },
-    { id: 15, name: "A.K. AKIF",                roll: "23102924", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "akif@example.com", photo: "EEE/students/akif.jpg" },
-    { id: 16, name: "MD. MOMINUL ISLAM",        roll: "23102926", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "mominul@example.com", photo: "EEE/students/mominul.jpg" },
-    { id: 17, name: "MD. ROYAL RANA",           roll: "23102930", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "royal@example.com", photo: "EEE/students/royal.jpg" },
-    { id: 18, name: "MAHEDI HASAN AROB",        roll: "23102934", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "arob@example.com", photo: "EEE/students/arob.jpg" },
-    { id: 19, name: "MOUMITA AKTER NIPUN",      roll: "23102935", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "moumita@example.com", photo: "EEE/students/moumita.jpg" },
-    { id: 20, name: "MD. RATUL AHMED RASEL",    roll: "23102936", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "ratul@example.com", photo: "EEE/students/ratul.jpg" },
-    { id: 21, name: "MUCTHENDU ROY RAHUL",      roll: "23102937", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rahul@example.com", photo: "EEE/students/rahul.jpg" },
-    { id: 22, name: "SHAUGT BIN RAFIQ SHIFAT",  roll: "23102938", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "shifat@example.com", photo: "EEE/students/shifat.jpg" },
-    { id: 23, name: "MD. JUBED AHMED",          roll: "23102939", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "jubed@example.com", photo: "EEE/students/jubed.jpg" },
-    { id: 24, name: "VUMI GUPTA",               roll: "23102941", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "vumi@example.com", photo: "EEE/students/vumi.jpg" },
-    { id: 25, name: "TRIPTI ROY ORCHI",         roll: "23102943", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "tripti@example.com", photo: "EEE/students/tripti.jpg" },
-    { id: 26, name: "MD. SAKIB HOSSAIN",        roll: "22102902", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sakib@example.com", photo: "EEE/students/sakib.jpg" },
-    { id: 27, name: "NAZIR AHMED",              roll: "22102906", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "nazir@example.com", photo: "EEE/students/nazir.jpg" },
-    { id: 28, name: "MST. SADIKA FARTHOUS",     roll: "22102915", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "sadika@example.com", photo: "EEE/students/sadika.jpg" },
-    { id: 29, name: "MD. PAVEL KHAN",           roll: "22102922", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "pavel@example.com", photo: "EEE/students/pavel.jpg" },
-    { id: 30, name: "MD. MAHMUDUL ISLAM RIZVI", roll: "22102925", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "rizvi@example.com", photo: "EEE/students/rizvi.jpg" },
-    { id: 31, name: "MD. ALIF MAHMUD OYON",     roll: "22102929", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "oyon@example.com", photo: "EEE/students/oyon.jpg" },
-    { id: 32, name: "HIMAL MIA",                roll: "22102934", dept: "B.Sc. in EEE, JKKNIU", phone: "017XXXXXXXX", email: "himal@example.com", photo: "EEE/students/himal.jpg" }
-  ];
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="/EEE/Messenger_creation_540294025599470.jpeg" alt="EEE Dept Logo">
+      <span>EEE 13th Batch</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="students.html">Students</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  // Get ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = parseInt(urlParams.get("id"));
+  <!-- PROFILE -->
+  <div class="profile-container">
+    <div class="profile-photo">
+      <img src="/EEE/students/mosharrof.jpg" alt="Student Photo">
+    </div>
+    <div class="profile-info">
+      <h1>MD. MOSHARROF HOSEN</h1>
+      <p><strong>Roll:</strong> 23102901</p>
+      <p><strong>Department:</strong> Electrical & Electronic Engineering</p>
+    </div>
 
-  // Find student
-  const student = students.find(s => s.id === id);
-
-  if (student) {
-    document.getElementById("studentCard").innerHTML = `
-      <img src="${student.photo}" alt="${student.name}">
-      <div class="info">
-        <h2>${student.name}</h2>
-        <p><strong>Roll:</strong> ${student.roll}</p>
-        <p><strong>Department:</strong> ${student.dept}</p>
-        <p><strong>Mobile:</strong> ${student.phone}</p>
-        <p><strong>Email:</strong> ${student.email}</p>
+    <!-- CONTACT INFO -->
+    <div class="contact-info">
+      <div class="contact-card">
+        <h3>Mobile</h3>
+        <p>+8801XXXXXXXXX</p>
       </div>
-      <a href="students.html" class="back-btn">⬅ Back to List</a>
-    `;
-  } else {
-    document.getElementById("studentCard").innerHTML = `
-      <h2>Student Not Found</h2>
-      <a href="students.html" class="back-btn">⬅ Back to List</a>
-    `;
-  }
-</script>
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p>mosharrof@example.com</p>
+      </div>
+      <div class="contact-card">
+        <h3>University</h3>
+        <p>Jatiya Kabi Kazi Nazrul Islam University</p>
+      </div>
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="social-links">
+      <a href="https://facebook.com/" target="_blank">Facebook</a>
+      <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+      <a href="mailto:mosharrof@example.com">Send Email</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 EEE 13th Batch – Student Profile</p>
+    <p><a href="students.html">← Back to Students List</a></p>
+  </footer>
+
+  <!-- PARTICLES JS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 60 },
+        "color": { "value": "#00f2fe" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 3 }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+
 </body>
 </html>
