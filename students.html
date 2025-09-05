@@ -1,245 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Student List - EEE-13 JKKNIU</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Students – EEE 13th Batch</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(to right,#141e30,#243b55);
+      color:#fff;
+      overflow-x:hidden;
+    }
+    header{
+      background:rgba(0,0,0,0.6);
+      padding:15px 30px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:fixed;
+      width:100%;
+      top:0;left:0;
+      z-index:100;
+      backdrop-filter:blur(10px);
+    }
+    header .logo{display:flex;align-items:center;gap:10px;}
+    header .logo img{height:40px;border-radius:6px;}
+    nav ul{display:flex;gap:20px;list-style:none;}
+    nav ul li a{
+      color:#fff;
+      font-weight:500;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    nav ul li a:hover{color:#00f2fe;}
+
+    /* CONTAINER */
+    .container{
+      max-width:1200px;
+      margin:120px auto 60px;
+      padding:20px;
+    }
+
+    /* SEARCH */
+    .search-box{
+      margin-bottom:40px;
+      text-align:center;
+    }
+    .search-box input{
+      width:70%;
+      max-width:500px;
+      padding:12px 20px;
+      border-radius:30px;
+      border:none;
+      outline:none;
+      font-size:1rem;
+      box-shadow:0 0 12px rgba(0,0,0,0.3);
+    }
+
+    /* STUDENT GRID */
+    .student-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+    .student-card{
+      background:rgba(255,255,255,0.05);
+      border-radius:15px;
+      overflow:hidden;
+      text-align:center;
+      padding:20px;
+      transition:0.3s;
+      border:1px solid rgba(255,255,255,0.15);
+      animation:fadeUp 1s ease forwards;
+      opacity:0;
+    }
+    .student-card:nth-child(odd){animation-delay:0.2s;}
+    .student-card:nth-child(even){animation-delay:0.4s;}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .student-card:hover{
+      transform:translateY(-8px) scale(1.03);
+      border-color:#00f2fe;
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    }
+    .student-card img{
+      width:120px;
+      height:120px;
+      object-fit:cover;
+      border-radius:50%;
+      margin-bottom:15px;
+      border:3px solid #00f2fe;
+      box-shadow:0 0 15px rgba(0,242,254,0.6);
+    }
+    .student-card h3{
+      font-size:1.2rem;
+      margin-bottom:6px;
+      color:#fff;
+      text-shadow:0 0 10px rgba(0,242,254,0.7);
+    }
+    .student-card p{
+      font-size:0.95rem;
+      margin-bottom:4px;
+      color:#ddd;
+    }
+    .student-card a{
+      display:inline-block;
+      margin-top:10px;
+      padding:6px 12px;
+      font-size:0.9rem;
+      border-radius:20px;
+      text-decoration:none;
+      background:linear-gradient(90deg,#4facfe,#00f2fe);
+      color:#000;
+      transition:0.3s;
+    }
+    .student-card a:hover{transform:scale(1.1);}
+
+    /* FOOTER */
+    footer{
+      background:rgba(0,0,0,0.7);
+      padding:30px;
+      text-align:center;
+      margin-top:60px;
+      color:#aaa;
+      font-size:0.9rem;
+    }
+    footer a{color:#00f2fe;}
+
+    /* PARTICLES */
+    #particles-js{
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0;left:0;
+      z-index:-1;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:600px){
+      .search-box input{width:90%;}
+      .student-card img{width:100px;height:100px;}
+    }
+  </style>
 </head>
 <body>
 
-<h1 class="page-title">EEE-13 JKKNIU - Student List</h1>
+  <!-- PARTICLES -->
+  <div id="particles-js"></div>
 
-<!-- Search Bar -->
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="Search by Name or Roll...">
-</div>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="/EEE/Messenger_creation_540294025599470.jpeg" alt="EEE Dept Logo">
+      <span>EEE 13th Batch</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="students.html" class="active">Students</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<ul class="student-list" id="student-list">
+  <!-- MAIN -->
+  <div class="container">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search student by name or roll...">
+    </div>
 
-  <li data-name="MD. MOSHARROF HOSEN" data-roll="23102901">
-    <a href="student.html?id=1">
-      <img src="EEE/students/mosharrof.jpg" alt="MD. MOSHARROF HOSEN">
-      <span>23102901 - MD. MOSHARROF HOSEN</span>
-    </a>
-  </li>
+    <div class="student-grid" id="studentGrid">
 
-  <li data-name="SAROWAR HOSSAIN" data-roll="23102903">
-    <a href="student.html?id=2">
-      <img src="EEE/students/sarowar.jpg" alt="SAROWAR HOSSAIN">
-      <span>23102903 - SAROWAR HOSSAIN</span>
-    </a>
-  </li>
+      <!-- SAMPLE STUDENT CARDS -->
+      <div class="student-card">
+        <img src="/EEE/students/mosharrof.jpg" alt="Mosharrof">
+        <h3>MD. MOSHARROF HOSEN</h3>
+        <p>Roll: 23102901</p>
+        <p>EEE, JKKNIU</p>
+        <a href="student-mosharrof.html">View Profile</a>
+      </div>
 
-  <li data-name="MST. RINI" data-roll="23102905">
-    <a href="student.html?id=3">
-      <img src="EEE/students/rini.jpg" alt="MST. RINI">
-      <span>23102905 - MST. RINI</span>
-    </a>
-  </li>
+      <div class="student-card">
+        <img src="/EEE/students/student2.jpg" alt="Student">
+        <h3>ABUL KALAM</h3>
+        <p>Roll: 23102902</p>
+        <p>EEE, JKKNIU</p>
+        <a href="student-abul.html">View Profile</a>
+      </div>
 
-  <li data-name="MD. SAHAB AL SABA" data-roll="23102907">
-    <a href="student.html?id=4">
-      <img src="EEE/students/sahab.jpg" alt="MD. SAHAB AL SABA">
-      <span>23102907 - MD. SAHAB AL SABA</span>
-    </a>
-  </li>
+      <div class="student-card">
+        <img src="/EEE/students/student3.jpg" alt="Student">
+        <h3>JANNATUL FERDOUS</h3>
+        <p>Roll: 23102903</p>
+        <p>EEE, JKKNIU</p>
+        <a href="student-jannat.html">View Profile</a>
+      </div>
 
-  <li data-name="SREYA DEBNATH" data-roll="23102909">
-    <a href="student.html?id=5">
-      <img src="EEE/students/sreya.jpg" alt="SREYA DEBNATH">
-      <span>23102909 - SREYA DEBNATH</span>
-    </a>
-  </li>
+      <div class="student-card">
+        <img src="/EEE/students/student4.jpg" alt="Student">
+        <h3>MD. RAHIM</h3>
+        <p>Roll: 23102904</p>
+        <p>EEE, JKKNIU</p>
+        <a href="student-rahim.html">View Profile</a>
+      </div>
 
-  <li data-name="SUMON UR REZA" data-roll="23102910">
-    <a href="student.html?id=6">
-      <img src="EEE/students/sumon.jpg" alt="SUMON UR REZA">
-      <span>23102910 - SUMON UR REZA</span>
-    </a>
-  </li>
+      <!-- আপনি চাইলে এখানে 40+ student card add করতে পারবেন -->
+      <!-- COPY-PASTE করে details পরিবর্তন করলেই হবে -->
 
-  <li data-name="PRIYA RANI PAUL" data-roll="23102911">
-    <a href="student.html?id=7">
-      <img src="EEE/students/priya.jpg" alt="PRIYA RANI PAUL">
-      <span>23102911 - PRIYA RANI PAUL</span>
-    </a>
-  </li>
+    </div>
+  </div>
 
-  <li data-name="SIYAM SHEIKH" data-roll="23102914">
-    <a href="student.html?id=8">
-      <img src="EEE/students/siyam.jpg" alt="SIYAM SHEIKH">
-      <span>23102914 - SIYAM SHEIKH</span>
-    </a>
-  </li>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 EEE 13th Batch – All Rights Reserved</p>
+  </footer>
 
-  <li data-name="HASIBUR RAHAMAN NYEEM" data-roll="23102915">
-    <a href="student.html?id=9">
-      <img src="EEE/students/hasibur.jpg" alt="HASIBUR RAHAMAN NYEEM">
-      <span>23102915 - HASIBUR RAHAMAN NYEEM</span>
-    </a>
-  </li>
+  <!-- PARTICLES JS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": "#00f2fe" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 3 }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
 
-  <li data-name="SHOUKOT ISLAM" data-roll="23102916">
-    <a href="student.html?id=10">
-      <img src="EEE/students/shoukot.jpg" alt="SHOUKOT ISLAM">
-      <span>23102916 - SHOUKOT ISLAM</span>
-    </a>
-  </li>
-  <li data-name="PROMA DATTA" data-roll="23102917">
-    <a href="student.html?id=11">
-      <img src="EEE/students/proma.jpg" alt="PROMA DATTA">
-      <span>23102917 - PROMA DATTA</span>
-    </a>
-  </li>
+    // SEARCH FUNCTION
+    const searchInput=document.getElementById("searchInput");
+    const studentGrid=document.getElementById("studentGrid");
+    searchInput.addEventListener("keyup",function(){
+      const filter=searchInput.value.toLowerCase();
+      const cards=studentGrid.getElementsByClassName("student-card");
+      Array.from(cards).forEach(card=>{
+        const name=card.querySelector("h3").textContent.toLowerCase();
+        const roll=card.querySelector("p").textContent.toLowerCase();
+        if(name.includes(filter)||roll.includes(filter)){
+          card.style.display="";
+        }else{
+          card.style.display="none";
+        }
+      });
+    });
+  </script>
 
-  <li data-name="BISHAMVOR KUMAR DAS" data-roll="23102918">
-    <a href="student.html?id=12">
-      <img src="EEE/students/bishamvor.jpg" alt="BISHAMVOR KUMAR DAS">
-      <span>23102918 - BISHAMVOR KUMAR DAS</span>
-    </a>
-  </li>
-
-  <li data-name="MD. LUTFUR RAHMAN" data-roll="23102919">
-    <a href="student.html?id=13">
-      <img src="EEE/students/lutfur.jpg" alt="MD. LUTFUR RAHMAN">
-      <span>23102919 - MD. LUTFUR RAHMAN</span>
-    </a>
-  </li>
-
-  <li data-name="MD. SHAKIBUL ISLAM EMON" data-roll="23102923">
-    <a href="student.html?id=14">
-      <img src="EEE/students/emon.jpg" alt="MD. SHAKIBUL ISLAM EMON">
-      <span>23102923 - MD. SHAKIBUL ISLAM EMON</span>
-    </a>
-  </li>
-
-  <li data-name="A.K. AKIF" data-roll="23102924">
-    <a href="student.html?id=15">
-      <img src="EEE/students/akif.jpg" alt="A.K. AKIF">
-      <span>23102924 - A.K. AKIF</span>
-    </a>
-  </li>
-
-  <li data-name="MD. MOMINUL ISLAM" data-roll="23102926">
-    <a href="student.html?id=16">
-      <img src="EEE/students/mominul.jpg" alt="MD. MOMINUL ISLAM">
-      <span>23102926 - MD. MOMINUL ISLAM</span>
-    </a>
-  </li>
-
-  <li data-name="MD. ROYAL RANA" data-roll="23102930">
-    <a href="student.html?id=17">
-      <img src="EEE/students/royal.jpg" alt="MD. ROYAL RANA">
-      <span>23102930 - MD. ROYAL RANA</span>
-    </a>
-  </li>
-
-  <li data-name="MAHEDI HASAN AROB" data-roll="23102934">
-    <a href="student.html?id=18">
-      <img src="EEE/students/arob.jpg" alt="MAHEDI HASAN AROB">
-      <span>23102934 - MAHEDI HASAN AROB</span>
-    </a>
-  </li>
-
-  <li data-name="MOUMITA AKTER NIPUN" data-roll="23102935">
-    <a href="student.html?id=19">
-      <img src="EEE/students/moumita.jpg" alt="MOUMITA AKTER NIPUN">
-      <span>23102935 - MOUMITA AKTER NIPUN</span>
-    </a>
-  </li>
-
-  <li data-name="MD. RATUL AHMED RASEL" data-roll="23102936">
-    <a href="student.html?id=20">
-      <img src="EEE/students/ratul.jpg" alt="MD. RATUL AHMED RASEL">
-      <span>23102936 - MD. RATUL AHMED RASEL</span>
-    </a>
-  </li>
-  <li data-name="MUCTHENDU ROY RAHUL" data-roll="23102937">
-    <a href="student.html?id=21">
-      <img src="EEE/students/rahul.jpg" alt="MUCTHENDU ROY RAHUL">
-      <span>23102937 - MUCTHENDU ROY RAHUL</span>
-    </a>
-  </li>
-
-  <li data-name="SHAUGT BIN RAFIQ SHIFAT" data-roll="23102938">
-    <a href="student.html?id=22">
-      <img src="EEE/students/shifat.jpg" alt="SHAUGT BIN RAFIQ SHIFAT">
-      <span>23102938 - SHAUGT BIN RAFIQ SHIFAT</span>
-    </a>
-  </li>
-
-  <li data-name="MD. JUBED AHMED" data-roll="23102939">
-    <a href="student.html?id=23">
-      <img src="EEE/students/jubed.jpg" alt="MD. JUBED AHMED">
-      <span>23102939 - MD. JUBED AHMED</span>
-    </a>
-  </li>
-
-  <li data-name="VUMI GUPTA" data-roll="23102941">
-    <a href="student.html?id=24">
-      <img src="EEE/students/vumi.jpg" alt="VUMI GUPTA">
-      <span>23102941 - VUMI GUPTA</span>
-    </a>
-  </li>
-
-  <li data-name="TRIPTI ROY ORCHI" data-roll="23102943">
-    <a href="student.html?id=25">
-      <img src="EEE/students/tripti.jpg" alt="TRIPTI ROY ORCHI">
-      <span>23102943 - TRIPTI ROY ORCHI</span>
-    </a>
-  </li>
-
-  <li data-name="MD. SAKIB HOSSAIN" data-roll="22102902">
-    <a href="student.html?id=26">
-      <img src="EEE/students/sakib.jpg" alt="MD. SAKIB HOSSAIN">
-      <span>22102902 - MD. SAKIB HOSSAIN</span>
-    </a>
-  </li>
-
-  <li data-name="NAZIR AHMED" data-roll="22102906">
-    <a href="student.html?id=27">
-      <img src="EEE/students/nazir.jpg" alt="NAZIR AHMED">
-      <span>22102906 - NAZIR AHMED</span>
-    </a>
-  </li>
-
-  <li data-name="MST. SADIKA FARTHOUS" data-roll="22102915">
-    <a href="student.html?id=28">
-      <img src="EEE/students/sadika.jpg" alt="MST. SADIKA FARTHOUS">
-      <span>22102915 - MST. SADIKA FARTHOUS</span>
-    </a>
-  </li>
-
-  <li data-name="MD. PAVEL KHAN" data-roll="22102922">
-    <a href="student.html?id=29">
-      <img src="EEE/students/pavel.jpg" alt="MD. PAVEL KHAN">
-      <span>22102922 - MD. PAVEL KHAN</span>
-    </a>
-  </li>
-
-  <li data-name="MD. MAHMUDUL ISLAM RIZVI" data-roll="22102925">
-    <a href="student.html?id=30">
-      <img src="EEE/students/rizvi.jpg" alt="MD. MAHMUDUL ISLAM RIZVI">
-      <span>22102925 - MD. MAHMUDUL ISLAM RIZVI</span>
-    </a>
-  </li>
-
-  <li data-name="MD. ALIF MAHMUD OYON" data-roll="22102929">
-    <a href="student.html?id=31">
-      <img src="EEE/students/oyon.jpg" alt="MD. ALIF MAHMUD OYON">
-      <span>22102929 - MD. ALIF MAHMUD OYON</span>
-    </a>
-  </li>
-
-  <li data-name="HIMAL MIA" data-roll="22102934">
-    <a href="student.html?id=32">
-      <img src="EEE/students/himal.jpg" alt="HIMAL MIA">
-      <span>22102934 - HIMAL MIA</span>
-    </a>
-  </li>
-</ul>
-
-<!-- JavaScript -->
-<script src="script.js"></script>
 </body>
 </html>
