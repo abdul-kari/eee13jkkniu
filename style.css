@@ -1,302 +1,567 @@
-/* Body & Particles */
-body {
+/* ============================================================
+   style.css
+   Complete styling for:
+   - index.html (welcome page, particles, logo, carousel, typing)
+   - students.html (searchable, animated list, thumbnails)
+   - student.html (detail card)
+   ============================================================ */
+
+/* ---------------------------
+   Base / Reset / Utilities
+   --------------------------- */
+:root{
+  --bg-1: #0f2027; /* deep teal */
+  --bg-2: #203a43;
+  --bg-3: #2c5364;
+  --accent: #00c6ff;
+  --accent-2: #004aad;
+  --muted: #94a3b8;
+  --card-bg: rgba(255,255,255,0.06);
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.08);
+  --white: #ffffff;
+  --shadow-1: 0 8px 24px rgba(2,6,23,0.6);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #0a1a2b;
-  color: #fff;
-  overflow-x: hidden;
-  position: relative;
+  font-family: "Inter", "Poppins", "Segoe UI", Roboto, system-ui, Arial, sans-serif;
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Utility containers */
+.container {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+}
+
+/* Visually hidden (accessibility) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ---------------------------
+   Particles Layer
+   --------------------------- */
 #particles-js {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(180deg, rgba(6,18,30,0.85) 0%, rgba(12,28,44,0.9) 60%);
+  pointer-events: none;
+}
+
+/* dark overlay that sits over particles (optional) */
+.particles-overlay {
+  position: fixed;
+  inset: 0;
   z-index: -1;
-  top: 0;
-  left: 0;
-  background-color: #0a1a2b;
+  background: linear-gradient(0deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15));
+  pointer-events: none;
 }
 
-/* Container */
+/* ---------------------------
+   Welcome Container (index.html)
+   --------------------------- */
 .welcome-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
   text-align: center;
-  padding: 50px 20px;
   position: relative;
+  z-index: 2;
 }
 
-/* Logos */
+/* Logos row */
 .logos {
   display: flex;
-  justify-content: center;
+  gap: 36px;
   align-items: center;
-  gap: 50px;
-  margin-bottom: 30px;
-  animation: fadeIn 2s ease-in-out;
-}
-
-.uni-logo, .dept-logo {
-  width: 120px;
-  height: auto;
-  animation: floatLogo 4s ease-in-out infinite alternate;
-}
-
-/* Welcome Text */
-.welcome-text {
-  font-size: 3em;
-  margin-bottom: 40px;
-  color: #00c6ff;
-  text-shadow: 0 0 10px #00c6ff;
-}
-
-/* Slider */
-.slider {
-  width: 80%;
-  margin: 0 auto 40px auto;
-  overflow: hidden; 
-  border-radius: 20px;
-  display: flex;
   justify-content: center;
+  padding: 6px;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity;
+  animation: logosAppear .9s ease both;
+}
+.logos img {
+  display: block;
+  width: 120px;
+  max-width: 22vmin;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 -6px 16px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  transform-origin: center;
 }
 
-.slides {
-  display: flex;
-  animation: slide 25s linear infinite;
+/* logos floating subtle */
+.uni-logo, .dept-logo {
+  animation: logoFloat 5s ease-in-out infinite alternate;
 }
 
-.slides img {
-  width: 300px; 
-  height: 200px;
-  margin: 0 15px;
-  border-radius: 15px;
-  animation: float 6s ease-in-out infinite alternate;
-  object-fit: cover; 
-  transition: transform 0.5s;
+/* Welcome text (typing target span is #typed-text) */
+.welcome-text {
+  font-size: clamp(28px, 3.5vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0 8px;
+  color: var(--accent);
+  text-shadow: 0 4px 28px rgba(0,198,255,0.08), 0 0 8px rgba(0,198,255,0.08);
+  font-weight: 700;
+  animation: textGlow 2.2s ease-in-out infinite alternate;
+  max-width: 1000px;
 }
 
-.slides img:hover {
-  transform: scale(1.1);
+/* small subtitle available */
+.welcome-sub {
+  color: var(--muted);
+  font-size: clamp(13px, 1.6vw, 16px);
+  margin-top: 6px;
 }
 
 /* Button */
 .btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 12px;
   text-decoration: none;
-  background-color: #004aad;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.3s;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--accent-2), #00356b);
+  box-shadow: 0 8px 30px rgba(0,66,173,0.22), 0 1px 0 rgba(255,255,255,0.03) inset;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-weight: 700;
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
 
-.btn:hover {
-  background-color: #002f6c;
-  transform: scale(1.05);
+/* Secondary effect hover */
+.btn:hover, .btn:focus {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(0,66,173,0.22);
+  filter: saturate(1.06);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+/* ---------------------------
+   Carousel / Slider (group photos)
+   --------------------------- */
+.slider {
+  width: min(1100px, 92%);
+  max-width: 1100px;
+  margin: 10px auto 0;
+  overflow: hidden;
+  border-radius: 18px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 16px 60px rgba(2,6,23,0.55);
 }
 
-@keyframes float {
-  0% { transform: translateY(0px);}
-  50% { transform: translateY(-15px);}
-  100% { transform: translateY(0px);}
+/* slides slot */
+.slides {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  animation: slideX 28s linear infinite;
+  will-change: transform;
 }
 
-@keyframes floatLogo {
-  0% { transform: translateY(0);}
-  50% { transform: translateY(-10px);}
-  100% { transform: translateY(0);}
+/* slide items */
+.slides img {
+  width: 320px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+  transform-origin: center;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), filter .32s ease;
+  animation: floatY 6s ease-in-out infinite alternate;
 }
 
-@keyframes slide {
-  0% {transform: translateX(0);}
-  100% {transform: translateX(-50%);}
+/* hover zoom */
+.slides img:hover {
+  transform: scale(1.06) translateY(-6px);
+  z-index: 4;
+  filter: saturate(1.06);
 }
 
-/* ===== Student List Page ===== */
+/* pause animation when hovering slider container */
+.slider:hover .slides { animation-play-state: paused; }
+
+/* duplicate slides trick: if you place repeated images you get seamless loop */
+@keyframes slideX {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* designed for duplicated slides */
+}
+
+/* vertical float for images */
+@keyframes floatY {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* logos animation */
+@keyframes logoFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes logosAppear {
+  from { opacity: 0; transform: translateY(-8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* welcome text soft glow */
+@keyframes textGlow {
+  0% { text-shadow: 0 6px 26px rgba(0,198,255,0.04); color: #98e9ff; }
+  100% { text-shadow: 0 18px 42px rgba(0,198,255,0.16); color: var(--accent); }
+}
+
+/* ---------------------------
+   Students List Page (students.html)
+   --------------------------- */
+
+/* page title */
 .page-title {
+  margin: 36px 0 6px;
+  font-size: clamp(22px, 3vw, 36px);
   text-align: center;
-  font-size: 2.5em;
-  margin-top: 30px;
-  color: #004aad;
-  animation: slideDown 1s ease-out;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 22px rgba(0,0,0,0.45);
 }
 
+/* Search area */
 .search-container {
-  text-align: center;
-  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 6px;
 }
 
 #search-input {
-  width: 50%;
-  padding: 10px 15px;
-  font-size: 1em;
-  border-radius: 10px;
-  border: 2px solid #004aad;
+  width: min(720px, 86%);
+  max-width: 720px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.18);
+  color: var(--white);
   outline: none;
-  transition: 0.3s;
+  font-size: 15px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.45);
+  transition: box-shadow .18s ease, transform .12s ease, border-color .18s ease;
 }
 
+/* focus */
 #search-input:focus {
-  border-color: #00c6ff;
-  box-shadow: 0 0 10px #00c6ff;
+  box-shadow: 0 14px 40px rgba(0,198,255,0.12);
+  transform: translateY(-2px);
+  border-color: rgba(0,198,255,0.18);
 }
 
+/* student list grid */
 .student-list {
   list-style: none;
-  padding: 0;
-  width: 60%;
-  margin: 30px auto;
+  padding: 14px;
+  margin: 18px auto 40px;
+  max-width: 980px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
+/* each item */
 .student-list li {
-  background-color: #ffffff;
-  margin: 10px 0;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s ease, background .26s ease;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  cursor: pointer;
   opacity: 0;
+  transform: translateY(18px);
+  will-change: transform, opacity;
 }
 
+/* anchor inside */
 .student-list li a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--white);
   text-decoration: none;
-  color: #004aad;
-  font-weight: bold;
-  font-size: 1.1em;
+  width: 100%;
 }
 
+/* thumbnail */
+.student-list li img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.06);
+  transition: transform .22s ease, box-shadow .22s ease;
+  flex-shrink: 0;
+}
+
+/* name / info */
+.student-list li span {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  display: block;
+  line-height: 1.05;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+/* hover */
 .student-list li:hover {
-  transform: translateX(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(2,6,23,0.6);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
 }
 
+.student-list li:hover img {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* animation class added via JS */
+.fade-slide-in {
+  animation: fadeSlideIn .6s forwards;
+}
+
+/* keyframe for list item entrance */
 @keyframes fadeSlideIn {
-  0% { opacity: 0; transform: translateX(-50px);}
-  100% { opacity: 1; transform: translateX(0);}
+  0% { opacity: 0; transform: translateY(18px) scale(.995); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes slideDown {
-  from {transform: translateY(-50px); opacity:0;}
-  to {transform: translateY(0); opacity:1;}
-}
+/* ---------------------------
+   Student Detail Card (student.html)
+   --------------------------- */
 
-/* ===== Student Detail Card ===== */
-.student-card {
-  width: 400px;
-  margin: 50px auto;
-  background-color: #004aad;
-  color: white;
+.student-card, .card {
+  max-width: 520px;
+  width: 94%;
+  margin: 48px auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
   padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 18px 60px rgba(2,6,23,0.6);
+  backdrop-filter: blur(6px);
   text-align: center;
-  animation: fadeSlideIn 1s ease forwards;
 }
 
-.student-card h2 {
-  margin-bottom: 20px;
-  color: #00c6ff;
-}
-/* ===== Student List Page ===== */
-.page-title {
-  text-align: center;
-  font-size: 2.5em;
-  margin-top: 30px;
-  color: #004aad;
-  animation: slideDown 1s ease-out;
-}
-
-.search-container {
-  text-align: center;
-  margin: 20px 0;
+/* student photo up top */
+.student-card img.student-photo,
+.card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.08);
+  margin: 0 auto 16px;
+  display: block;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+  animation: floatDetail 4.5s ease-in-out infinite alternate;
 }
 
-#search-input {
-  width: 50%;
-  padding: 10px 15px;
-  font-size: 1em;
+/* detail headings/text */
+.student-card h2,
+.card h2 {
+  margin: 8px 0 6px;
+  font-size: clamp(20px, 3vw, 26px);
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.student-card p, .card p {
+  margin: 8px 0;
+  color: rgba(255,255,255,0.92);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* subtle label (muted) */
+.student-card .muted, .card .muted {
+  color: rgba(255,255,255,0.72);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+/* link button */
+.back-btn, .btn-secondary {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 16px;
   border-radius: 10px;
-  border: 2px solid #004aad;
-  outline: none;
-  transition: 0.3s;
-}
-
-#search-input:focus {
-  border-color: #00c6ff;
-  box-shadow: 0 0 10px #00c6ff;
-}
-
-.student-list {
-  list-style: none;
-  padding: 0;
-  width: 60%;
-  margin: 30px auto;
-}
-
-.student-list li {
-  background-color: #ffffff;
-  margin: 10px 0;
-  padding: 15px 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0;
-}
-
-.student-list li a {
   text-decoration: none;
-  color: #004aad;
-  font-weight: bold;
-  font-size: 1.1em;
+  color: #06202b;
+  background: linear-gradient(180deg, #fff, #f1f5f9);
+  font-weight: 700;
+  box-shadow: 0 10px 32px rgba(3,8,18,0.2);
+  transition: transform .18s ease;
+}
+.back-btn:hover, .btn-secondary:hover {
+  transform: translateY(-4px);
 }
 
-.student-list li:hover {
-  transform: translateX(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+/* detail float animation */
+@keyframes floatDetail {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-/* Fade-slide-in animation */
-@keyframes fadeSlideIn {
-  0% { opacity: 0; transform: translateX(-50px);}
-  100% { opacity: 1; transform: translateX(0);}
+/* ---------------------------
+   Responsive Behaviour
+   --------------------------- */
+@media (max-width: 980px) {
+  .slides img { width: 260px; height: 170px; }
+  .logos img { width: 96px; }
+  .welcome-text { font-size: clamp(20px, 6vw, 36px); }
+  #search-input { width: 90%; }
+  .student-list { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .student-card, .card { padding: 22px; }
+  .student-card img.student-photo { width: 150px; height: 150px; }
 }
 
-/* Slide down animation */
-@keyframes slideDown {
-  from {transform: translateY(-50px); opacity:0;}
-  to {transform: translateY(0); opacity:1;}
+@media (max-width: 560px) {
+  .slides img { width: 220px; height: 150px; }
+  .logos { gap: 18px; }
+  .logos img { width: 76px; }
+  .welcome-container { padding: 28px 14px; }
+  .welcome-text { font-size: 22px; }
+  .student-list { grid-template-columns: 1fr; gap: 10px; padding: 6px; }
+  .student-list li { padding: 12px; gap: 10px; }
+  .student-list li img { width: 48px; height: 48px; }
+  .student-card img.student-photo { width: 130px; height: 130px; }
 }
 
-/* ===== Student Detail Card ===== */
-.student-card {
-  width: 400px;
-  margin: 50px auto;
-  background-color: #004aad;
-  color: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  text-align: center;
-  animation: fadeSlideIn 1s ease forwards;
+/* ---------------------------
+   Prints & Reduced Motion
+   --------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .slides { animation: none !important; }
+  .slides img { animation: none !important; }
+  .logos, .welcome-text, .student-list li, .student-card img { animation-duration: 0s !important; animation: none !important; transition: none !important; }
 }
 
-.student-card h2 {
-  margin-bottom: 20px;
-  color: #00c6ff;
+/* print-friendly */
+@media print {
+  body { background: #fff; color: #000; }
+  #particles-js, .slider, .btn, .search-container { display: none !important; }
+  .student-card, .student-list li { box-shadow: none; background: #fff; color: #000; border: 1px solid #ccc; }
 }
 
-.student-card p {
-  font-size: 1.1em;
-  margin: 10px 0;
+/* ---------------------------
+   Extra decorative bits
+   --------------------------- */
+
+/* faint glass rings behind content for depth */
+.decor-ring {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: .16;
+  pointer-events: none;
+  z-index: -1;
+}
+.decor-ring.r1 { width: 420px; height: 420px; right: -80px; top: 30vh; background: radial-gradient(circle at 40% 40%, rgba(0,198,255,0.14), transparent 40%); }
+.decor-ring.r2 { width: 300px; height: 300px; left: -80px; bottom: 8vh; background: radial-gradient(circle at 60% 40%, rgba(0,74,173,0.12), transparent 40%); }
+
+/* small badges used anywhere */
+.badge {
+  display: inline-block;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.55);
 }
 
-.student-card p {
-  font-size: 1.1em;
-  margin: 10px 0;
+/* small util classes */
+.kicker { font-size: 13px; color: rgba(255,255,255,0.78); margin-bottom: 6px; }
+.center { display: flex; align-items:center; justify-content:center; }
+
+/* ---------------------------
+   Fallbacks & small helpers
+   --------------------------- */
+
+/* if images are missing, show neutral avatar styling */
+.student-list li img[alt=""], .student-list li img:not([src]) {
+  background: linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  display: inline-block;
+  width: 56px; height: 56px;
 }
+
+/* error visual for missing student photo on detail */
+.card .photo-missing {
+  width: 180px; height: 180px; background: linear-gradient(180deg,#2b3944,#162029); border-radius:50%; display:block; margin:0 auto 18px; border: 4px solid rgba(255,255,255,0.06);
+  align-items:center; justify-content:center; display:flex; color:var(--muted);
+}
+
+/* small animated underline for headings */
+.underline {
+  display: inline-block;
+  position: relative;
+}
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform .45s cubic-bezier(.2,.9,.2,1);
+}
+.underline:hover::after { transform: scaleX(1); }
+
+/* tiny helper for alignment if needed */
+.row { display:flex; gap:12px; align-items:center; justify-content:center; }
+
+/* ---------------------------
+   End of CSS file
+   --------------------------- */
