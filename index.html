@@ -2,71 +2,323 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EEE-13 JKKNIU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEE 13th Batch – JKKNIU</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    /* === GLOBAL RESET === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: #0f2027;  /* fallback for old browsers */
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      overflow-x: hidden;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    ul { list-style: none; }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      padding: 15px 50px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    header .logo img {
+      height: 50px;
+      border-radius: 8px;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: #00f2fe;
+      transition: width 0.3s ease;
+    }
+    nav ul li:hover::after {
+      width: 100%;
+    }
+
+    /* === HERO SECTION === */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 120px 20px 50px;
+      background: url('/EEE/place_jkkniu.jpg') no-repeat center center/cover;
+      position: relative;
+      color: #fff;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      animation: textGlow 3s infinite alternate;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px #00f2fe; }
+      to { text-shadow: 0 0 20px #4facfe, 0 0 30px #00f2fe; }
+    }
+
+    /* === SLIDER === */
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .slides {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+    .slides img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    .slider-controls button {
+      background: rgba(0,0,0,0.6);
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+    .slider-controls button:hover {
+      background: rgba(0,0,0,0.9);
+    }
+
+    /* === ABOUT === */
+    .about {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+    }
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00f2fe;
+    }
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    /* === CALL TO ACTION === */
+    .cta {
+      margin: 60px auto;
+      text-align: center;
+    }
+    .cta a {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: #000;
+      font-weight: bold;
+      padding: 15px 40px;
+      border-radius: 50px;
+      transition: 0.3s;
+      font-size: 1.2rem;
+    }
+    .cta a:hover {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      transform: scale(1.05);
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: rgba(0,0,0,0.7);
+      padding: 40px;
+      text-align: center;
+      margin-top: 60px;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    footer a { color: #00f2fe; }
+
+    /* === PARTICLES BACKGROUND === */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0; left: 0;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Particles background -->
-<div id="particles-js"></div>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
 
-<div class="welcome-container">
-
-  <!-- Logos -->
-  <div class="logos">
-    <img src="EEE/Messenger_creation_540294025599470.jpeg" alt="University Logo" class="uni-logo">
-    <img src="EEE/place_jkkniu.jpg" alt="EEE Dept Logo" class="dept-logo">
-  </div>
-
-  <!-- Welcome Text -->
-  <h1 class="welcome-text">
-    <span id="typed-text"></span>
-  </h1>
-
-  <!-- Group Photos Carousel -->
-  <div class="slider">
-    <div class="slides">
-      <img src="EEE/IMG-20240430-WA0012.jpg" alt="Group 1">
-      <img src="EEE/IMG-20241213-WA0020.jpg" alt="Group 2">
-      <img src="EEE/IMG-20250215-WA0004.jpg" alt="Group 3">
-      <img src="EEE/IMG-20250315-WA0024.jpg" alt="Group 4">
-      <img src="EEE/IMG-20250708-WA0271.jpg" alt="Group 5">
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="/EEE/Messenger_creation_540294025599470.jpeg" alt="EEE Dept Logo">
+      <span><strong>EEE 13th Batch</strong> – JKKNIU</span>
     </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#slider">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="students.html">Students</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Welcome to EEE 13th Batch</h1>
+      <p>Jatiya Kabi Kazi Nazrul Islam University | Department of Electrical and Electronic Engineering</p>
+    </div>
+  </section>
+
+  <!-- SLIDER -->
+  <section id="slider" class="slider">
+    <div class="slides">
+      <img src="/EEE/IMG-20240430-WA0012.jpg" alt="Group 1">
+      <img src="/EEE/IMG-20241213-WA0020.jpg" alt="Group 2">
+      <img src="/EEE/IMG-20250215-WA0004.jpg" alt="Group 3">
+      <img src="/EEE/IMG-20250315-WA0024.jpg" alt="Group 4">
+      <img src="/EEE/IMG-20250708-WA0271.jpg" alt="Group 5">
+    </div>
+    <div class="slider-controls">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2>About Our Batch</h2>
+    <p>
+      We are the proud students of the 13th Batch, Department of Electrical and Electronic Engineering, JKKNIU.
+      This batch consists of brilliant minds, aspiring engineers, and passionate learners who are preparing
+      to contribute in various fields of Electrical and Electronics. Together we celebrate unity, friendship,
+      and the spirit of innovation.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a href="students.html">Meet Our Students</a>
   </div>
 
-  <!-- Button -->
-  <a href="students.html" class="btn">Go to Student List</a>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 EEE 13th Batch, Jatiya Kabi Kazi Nazrul Islam University. All rights reserved.</p>
+    <p>Developed with ❤️ by Batchmates</p>
+  </footer>
 
-<!-- Typing Animation Script -->
-<script>
-const text = "Welcome to EEE-13 JKKNIU";
-let i = 0;
-const speed = 100;
-function typeWriter() {
-  if(i < text.length){
-    document.getElementById("typed-text").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
-window.onload = typeWriter;
-</script>
+  <!-- === JAVASCRIPT === -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    /* SLIDER SCRIPT */
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let counter = 0;
 
-<!-- Particles.js init -->
-<script>
-particlesJS("particles-js", {
-  "particles": {
-    "number": { "value": 60 },
-    "color": { "value": "#004aad" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3 },
-    "move": { "enable": true, "speed": 2 }
-  }
-});
-</script>
+    function showSlide(index) {
+      if(index >= images.length) counter = 0;
+      else if(index < 0) counter = images.length - 1;
+      else counter = index;
+      slides.style.transform = `translateX(${-counter * 100}%)`;
+    }
+    next.addEventListener('click', () => showSlide(counter+1));
+    prev.addEventListener('click', () => showSlide(counter-1));
+    setInterval(() => showSlide(counter+1), 5000);
+
+    /* PARTICLES INIT */
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": "#00f2fe" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00f2fe", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 4 }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 
 </body>
 </html>
