@@ -613,3 +613,8 @@ html, body {
   font-weight: 600;
   color: #222;
 }
+.student-list li span {
+  color: #222;  /* dark text for white card background */
+  font-size: 16px;
+  font-weight: 600;
+}
