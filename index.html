@@ -234,9 +234,33 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <h1>Welcome to EEE 13th Batch</h1>
-      <p>Jatiya Kabi Kazi Nazrul Islam University | Department of Electrical and Electronic Engineering</p>
-    </div>
+  <h1>Welcome to EEE 13th Batch</h1>
+  <p>Jatiya Kabi Kazi Nazrul Islam University | Department of Electrical and Electronic Engineering</p>
+  <h2 class="typing"></h2>
+</div>
+
+<script>
+  const words = ["Innovators", "Engineers", "Dreamers", "Leaders"];
+  let i = 0;
+  let j = 0;
+  let currentWord = '';
+  let isDeleting = false;
+  const typingElement = document.querySelector('.typing');
+
+  function type() {
+    currentWord = words[i];
+    if (isDeleting) {
+      typingElement.textContent = currentWord.substring(0, j--);
+      if (j < 0) { isDeleting = false; i = (i+1)%words.length; }
+    } else {
+      typingElement.textContent = currentWord.substring(0, j++);
+      if (j > currentWord.length) { isDeleting = true; }
+    }
+    setTimeout(type, isDeleting ? 80 : 150);
+  }
+  type();
+</script>
+
   </section>
 
   <!-- SLIDER -->
