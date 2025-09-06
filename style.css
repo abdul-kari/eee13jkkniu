@@ -830,3 +830,59 @@ header nav ul li a:hover::after {
   padding: 10px;
   border-radius: 8px;
 }
+/* Publications Box Grid */
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+.pub-item {
+  background: rgba(255,255,255,0.06);
+  padding: 14px 16px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.pub-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+.pub-item h4 {
+  margin: 0;
+  font-size: 17px;
+  color: #00f2fe;
+}
+.pub-item p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+.pub-meta {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Teaching Box Grid */
+.teach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.teach-item {
+  background: rgba(255,255,255,0.06);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: 0.3s;
+}
+.teach-item:hover {
+  background: rgba(0,242,254,0.1);
+  transform: translateY(-3px);
+}
+.teach-item small {
+  font-weight: 400;
+  color: #94a3b8;
+}
